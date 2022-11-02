@@ -8,9 +8,9 @@ max_score = int(input("What is the maximum score for playing that you want? "))
 print(f"Max score is {max_score}")
 
 while True:
-    print("Ulazak u while")
+    print("Total score", scores[active_player])
     dice = random.randint(1,6)
-    print(dice)
+    print("You got ", dice)
 
     if dice != 1:
         current_score += dice
@@ -29,6 +29,10 @@ while True:
             if scores[active_player] >= max_score:
                 print(f"Player {active_player} won")
                 break
+
+            # active_player = 1 if active_player == 0 else 0
+            # active_player = (active_player + 1) % len(scores)
+
             if active_player == 0:
                 active_player = 1
                 print(f"Active player now is {active_player}")
@@ -40,8 +44,8 @@ while True:
     else:
         print("Now is turn for another player, you got 1")
         current_score = 0
-        scores[active_player] = 0
         if active_player == 0:
             active_player = 1
         else:
             active_player = 0
+        print(f'Active player now is {active_player}')
