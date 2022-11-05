@@ -87,6 +87,7 @@ def main():
             return
 
     print("You lose!")
+    print("The right word was", target_word.upper())
 
 
 if __name__ == "__main__":
