@@ -22,7 +22,7 @@ while True:
         print()
         print('-----------')
 
-        if current_score >= max_score:
+        if scores[active_player] + current_score >= max_score:
             print('***********')
             print(f"Player {active_player} won")
             print('***********')
@@ -32,31 +32,23 @@ while True:
         if answer == 'y':
             scores[active_player] += current_score
             current_score = 0
-            if scores[active_player] >= max_score:
-                print('***********')
-                print(f"Player {active_player} won")
-                print('***********')
-                break
 
             # active_player = 1 if active_player == 0 else 0
             # active_player = (active_player + 1) % len(scores)
 
             if active_player == 0:
                 active_player = 1
-                print()
-                print("PLAYERS ARE CHANGED")
-                print('Now is another turn for another player')
-                print(f"Active player now is {active_player}")
-                current_score = 0
-                print()
             else:
                 active_player = 0
-                print('Now is another turn for another player')
-                print(f'Active player now is {active_player}')
-                current_score = 0
-                print()
-        print()
-        print(f"Player {active_player} is still playing.")
+
+            print()
+            print("PLAYERS ARE CHANGED")
+            print('Now is another turn for another player')
+            print(f"Active player now is {active_player}")
+            print()
+        else:
+            print()
+            print(f"Player {active_player} is still playing.")
     else:
         print()
         print("Now is turn for another player, you got 1")
@@ -66,6 +58,5 @@ while True:
             active_player = 1
         else:
             active_player = 0
-        print()
         print(f'Active player now is {active_player}')
         print()
