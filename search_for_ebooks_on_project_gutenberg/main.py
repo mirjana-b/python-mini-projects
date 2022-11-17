@@ -3,30 +3,34 @@ from urllib.parse import quote
 import os
 import requests
 
+CONNECTION_TIMEOUT = 5
 
 class Book:
-    """A class that represents author name and a title of a book.
+    """A class that contains author name and a title of a book.
     """
 
     def __init__(self, author_name, title):
         self.author_name = author_name
         self.title = title
 
+    @classmethod
+    def from_dictionary(cls, result):
+        """Create object of class Book from a dictionary.
 
-def book(result):
-    """Create object of class Book from a dictionary.
+        Args:
+            result (dict): A dictionary from which to create an object.
 
-    Args:
-        result (dict): A dictionary from which to create an object.
+        Returns:
+            object: object of Book
+        """
+        # TODO Handle multiple authors (example search: euclid)
+        first_author = 0
+        book = Book(result['authors'][first_author]['name'], result['title'])
+        return book
 
-    Returns:
-        object: object of Book
-    """
-    book_name_and_title = Book(result['authors'][0]['name'], result['title'])
-    return book_name_and_title
 
-
-def create_request():
+def create_request_url():
+    # TODO Do not ask for input here, but receive the query as an argument
     user_request = 'https://gutendex.com/books/?search='
     user_input = input(
         "Enter words to search author names and book titles on Project Gutenberg: ")
@@ -47,12 +51,15 @@ def print_search_results(book_objects):
 
 def main():
     os.system("cls")
-    response = requests.get(create_request()).text
+    # TODO Check if the response code is 200 (OK). Also check if there is already
+    # a constant for that 200
+    # https://requests.readthedocs.io/en/latest/api/#status-code-lookup
+    response = requests.get(create_request_url(), timeout=CONNECTION_TIMEOUT).text
     json_object = json.loads(response)  # dict
     results = json_object['results']  # list of dictionaries
     # list of objects of class Book
-    book_objects = [book(result) for result in results]
-    print_search_results(book_objects)
+    books = [Book.from_dictionary(result) for result in results]
+    print_search_results(books)
 
 
 if __name__ == "__main__":
