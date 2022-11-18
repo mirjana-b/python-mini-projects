@@ -16,7 +16,19 @@ class Book:
         Returns:
             object: object of Book
         """
-        # TODO Handle multiple authors (example search: euclid)
         first_author = 0
-        book = Book(result['authors'][first_author]['name'], result['title'])
-        return book
+        authors_names = ''
+        number_of_authors = len(result['authors'])
+        if number_of_authors > 1:
+            for i, author in enumerate(result['authors']):
+                if i > 0:
+                    authors_names += '; '
+                    authors_names += author['name']
+                else:
+                    authors_names += author['name']
+            book = Book(authors_names, result['title'])
+            return book
+        else:
+            book = Book(result['authors'][first_author]
+                        ['name'], result['title'])
+            return book

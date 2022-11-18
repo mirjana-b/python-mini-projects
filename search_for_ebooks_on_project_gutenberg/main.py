@@ -20,9 +20,14 @@ def print_search_results(book_objects):
     print("Results of your search:")
     print()
     for i, result in enumerate(book_objects):
-        print(f"{i+1}.")
-        print(f"    Book title: {result.title}")
-        print(f"    Author name: {result.author_name}")
+        if ";" in result.author_name:
+            print(f"{i+1}.")
+            print(f"    Book title: {result.title}")
+            print(f"    Authors' names: {result.author_name}")
+        else:
+            print(f"{i+1}.")
+            print(f"    Book title: {result.title}")
+            print(f"    Author name: {result.author_name}")
 
 
 def main():
