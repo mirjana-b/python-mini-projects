@@ -2,6 +2,8 @@ import json
 from urllib.parse import quote
 import os
 import requests
+from colorama import Fore
+from colorama import Style
 from book import Book
 
 
@@ -17,17 +19,19 @@ def create_request_url(query):
 
 def print_search_results(book_objects):
     os.system("cls")
-    print("Results of your search:")
+    print(f"{Fore.GREEN}Results of your search:{Style.RESET_ALL}")
     print()
     for i, result in enumerate(book_objects):
         if ";" in result.author_name:
             print(f"{i+1}.")
-            print(f"    Book title: {result.title}")
-            print(f"    Authors' names: {result.author_name}")
+            print(f"    {Fore.GREEN}Book title:{Style.RESET_ALL} {result.title}")
+            print(
+                f"    {Fore.GREEN}Authors' names:{Style.RESET_ALL} {result.author_name}")
         else:
             print(f"{i+1}.")
-            print(f"    Book title: {result.title}")
-            print(f"    Author name: {result.author_name}")
+            print(f"    {Fore.GREEN}Book title:{Style.RESET_ALL} {result.title}")
+            print(
+                f"    {Fore.GREEN}Author name:{Style.RESET_ALL} {result.author_name}")
 
 
 def main():
