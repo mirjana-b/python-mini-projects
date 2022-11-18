@@ -1,4 +1,3 @@
-import json
 from urllib.parse import quote
 import os
 import requests
@@ -38,16 +37,14 @@ def main():
     os.system("cls")
     user_query = input(
         "Enter words to search author names and book titles on Project Gutenberg: ")
-
     response = requests.get(create_request_url(user_query),
                             timeout=CONNECTION_TIMEOUT)
 
     if response.status_code == requests.codes['ok']:
-        response_text = response.text
-        json_object = json.loads(response_text)  # dict
-        results = json_object['results']  # list of dictionaries
-        # list of objects of class Book
+        json_object = response.json()
+        results = json_object['results']
         books = [Book.from_dictionary(result) for result in results]
+
         print_search_results(books)
     else:
         print("Response status code wasn't OK!")
