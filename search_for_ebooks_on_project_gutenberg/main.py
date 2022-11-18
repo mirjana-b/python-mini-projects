@@ -2,40 +2,16 @@ import json
 from urllib.parse import quote
 import os
 import requests
+from book import Book
+
 
 CONNECTION_TIMEOUT = 5
 
-class Book:
-    """A class that contains author name and a title of a book.
-    """
 
-    def __init__(self, author_name, title):
-        self.author_name = author_name
-        self.title = title
-
-    @classmethod
-    def from_dictionary(cls, result):
-        """Create object of class Book from a dictionary.
-
-        Args:
-            result (dict): A dictionary from which to create an object.
-
-        Returns:
-            object: object of Book
-        """
-        # TODO Handle multiple authors (example search: euclid)
-        first_author = 0
-        book = Book(result['authors'][first_author]['name'], result['title'])
-        return book
-
-
-def create_request_url():
-    # TODO Do not ask for input here, but receive the query as an argument
+def create_request_url(query):
     user_request = 'https://gutendex.com/books/?search='
-    user_input = input(
-        "Enter words to search author names and book titles on Project Gutenberg: ")
-    user_input = quote(user_input)
-    user_request += user_input
+    user_query = quote(query)
+    user_request += user_query
     return user_request
 
 
@@ -54,7 +30,10 @@ def main():
     # TODO Check if the response code is 200 (OK). Also check if there is already
     # a constant for that 200
     # https://requests.readthedocs.io/en/latest/api/#status-code-lookup
-    response = requests.get(create_request_url(), timeout=CONNECTION_TIMEOUT).text
+    user_query = input(
+        "Enter words to search author names and book titles on Project Gutenberg: ")
+    response = requests.get(create_request_url(user_query),
+                            timeout=CONNECTION_TIMEOUT).text
     json_object = json.loads(response)  # dict
     results = json_object['results']  # list of dictionaries
     # list of objects of class Book
