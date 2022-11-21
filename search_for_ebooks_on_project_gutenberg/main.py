@@ -4,7 +4,7 @@ import requests
 from colorama import Fore
 from colorama import Style
 from book import Book
-
+from print_book_text import print_book_text_in_terminal
 
 CONNECTION_TIMEOUT = 5
 
@@ -33,6 +33,22 @@ def print_search_results(book_objects):
                 f"    {Fore.GREEN}Author name:{Style.RESET_ALL} {result.author_name}")
 
 
+def print_book_for_reading(index, books):
+    os.system("cls")
+    book_index = index - 1
+    result = books[book_index]
+
+    if result.text_plain_url is None:
+        print("There is no plain text for that book")
+        return
+
+    response = requests.get(result.text_plain_url,
+                            timeout=CONNECTION_TIMEOUT)
+    book_text = response.text
+    print_book_text_in_terminal(book_text)
+    return
+
+
 def main():
     os.system("cls")
     user_query = input(
@@ -46,8 +62,14 @@ def main():
         books = [Book.from_dictionary(result) for result in results]
 
         print_search_results(books)
+        print()
     else:
         print("Response status code wasn't OK!")
+
+    message = "Would you like to read book from your search results? " + \
+              "If you do, enter the number of the book: "
+    answer = int(input(message))
+    print_book_for_reading(answer, books)
 
 
 if __name__ == "__main__":
