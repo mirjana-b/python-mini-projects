@@ -1,8 +1,7 @@
 from urllib.parse import quote
 import os
 import requests
-from colorama import Fore
-from colorama import Style
+from colorama import Fore, Style
 from book import Book
 from print_book_text import print_book_text_in_terminal
 
@@ -37,6 +36,7 @@ def print_book_for_reading(index, books):
     os.system("cls")
     book_index = index - 1
     result = books[book_index]
+    book_title = books[book_index].title
 
     if result.text_plain_url is None:
         print("There is no plain text for that book")
@@ -45,7 +45,7 @@ def print_book_for_reading(index, books):
     response = requests.get(result.text_plain_url,
                             timeout=CONNECTION_TIMEOUT)
     book_text = response.text
-    print_book_text_in_terminal(book_text)
+    print_book_text_in_terminal(book_text, book_title)
     return
 
 
