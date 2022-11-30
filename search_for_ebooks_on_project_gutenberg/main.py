@@ -32,9 +32,8 @@ def print_search_results(book_objects):
                 f"    {Fore.GREEN}Author name:{Style.RESET_ALL} {result.author_name}")
 
 
-def print_book_for_reading(index, books):
+def print_book_for_reading(book_index, books):
     os.system("cls")
-    book_index = index - 1
     result = books[book_index]
     book_title = books[book_index].title
 
@@ -68,9 +67,21 @@ def main():
 
     message = "Would you like to read book from your search results? " + \
               "If you do, enter the number of the book: "
-    answer = int(input(message))
-    print_book_for_reading(answer, books)
+    while True:
+        try:
+            answer = int(input(message)) - 1
+
+            if not 0 <= answer < len(books):
+                continue
+
+            print_book_for_reading(answer, books)
+            break
+        except ValueError:
+            continue
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        pass
