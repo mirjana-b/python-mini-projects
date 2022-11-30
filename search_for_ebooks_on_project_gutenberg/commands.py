@@ -12,4 +12,3 @@ def help_commands():
     print(f"{Fore.GREEN}q{Style.RESET_ALL} if you want to quit")
     print()
     input(f"{Fore.GREEN}Press any key to go back:{Style.RESET_ALL} ")
-

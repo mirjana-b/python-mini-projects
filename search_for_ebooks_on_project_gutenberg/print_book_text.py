@@ -4,13 +4,15 @@ from colorama import Fore, Style
 from commands import help_commands
 from print_book_title import print_book_title
 
+
 def print_book_text_in_terminal(book_text, book_title):
     terminal_size = os.get_terminal_size()
     terminal_height = terminal_size.lines - 3
     text_lines = book_text.splitlines()
     reading = True
     current_reading_line = 0
-    message_to_user = f"{Fore.GREEN}Enter command or help if you want to see available commands:{Style.RESET_ALL} "
+    message_to_user = f"{Fore.GREEN}Enter command or help" + \
+        f" if you want to see available commands:{Style.RESET_ALL} "
     total_page_number = math.ceil(len(text_lines)/terminal_height)
     search_word = None
     while reading:

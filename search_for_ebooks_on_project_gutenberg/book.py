@@ -1,5 +1,5 @@
 class Book:
-    """A class that contains author name and a title of a book.
+    """A class that contains author name, title and an url for plain text of a book.
     """
 
     def __init__(self, author_name, title, text_plain_url):
