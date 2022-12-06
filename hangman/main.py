@@ -89,7 +89,8 @@ def main():
     country_guess_result = ''
     os.system('cls')
     while playing:
-        letter_guess = input("Enter your letter: ")
+        letter_guess = input(
+            f"{Fore.GREEN}Enter your letter:{Style.RESET_ALL} ")
         country_guess, missed_letters = letter_check(
             letter_guess, country_guess, country, missed_letters)
         country_guess_result = "".join(country_guess)
@@ -105,11 +106,15 @@ def main():
             print_hangman(missed_letters, HANGMAN_PICS, country)
         elif len(missed_letters) == 0:
             os.system('cls')
-            print(f"Your progress so far: {country_guess_result}")
+            print(
+                f"{Fore.YELLOW}Your progress so far: " +
+                f"{' '.join(country_guess_result)}{Style.RESET_ALL}")
         if 0 < len(missed_letters) < len(HANGMAN_PICS):
             print_hangman(missed_letters, HANGMAN_PICS, country)
             print()
-            print(f"Your progress so far: {country_guess_result}")
+            print(
+                f"{Fore.YELLOW}Your progress so far: " +
+                f"{' '.join(country_guess_result)}{Style.RESET_ALL}")
 
 
 if __name__ == "__main__":
