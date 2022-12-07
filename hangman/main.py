@@ -43,11 +43,11 @@ HANGMAN_PICS = ['''
 
 def select_country():
     europe_countries = [
-        "Albania", "Andorra", "Armenia", "Austria", "Azerbaijan",
-        "Belarus", "Belgium", "Bulgaria", "Croatia", "Cyprus",
-        "Denmark", "Estonia", "Finland", "France", "Georgia",
+        "Albania", "Andorra", "Holy See", "Austria", "United Kingdom",
+        "Belarus", "Belgium", "Bulgaria", "Croatia", "Bosnia and Herzegovina",
+        "Denmark", "Estonia", "Finland", "France", "Czech Republic",
         "Germany", "Greece", "Hungary", "Iceland", "Ireland",
-        "Italy", "Kazakhstan", "Latvia", "Liechtenstein", "Lithuania",
+        "Italy", "Latvia", "Liechtenstein", "Lithuania",
         "Luxembourg", "North Macedonia", "Malta", "Moldova", "Monaco",
         "Montenegro", "Netherlands", "Norway", "Poland", "Portugal",
         "Romania", "Russia", "Serbia", "Slovakia", "Slovenia",
