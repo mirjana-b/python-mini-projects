@@ -1,5 +1,6 @@
 import os
 from colorama import Fore, Style
+from sudoku_solver import sudoku_solver
 
 
 def clean_screen():
@@ -8,15 +9,28 @@ def clean_screen():
 
 def print_sudoku_puzzle(sudoku_puzzle):
     clean_screen()
+    puzzle_width_chars = 37
+
     for index, row in enumerate(sudoku_puzzle):
-        if index == 0:
-            print(f"{Fore.RED}-{Style.RESET_ALL}"*37)
+        border = "|"
+        emphasized_border = f"{Fore.RED}{border}{Style.RESET_ALL}"
+
+        if index in (0,3,6):
+            print(f"{Fore.RED}-{Style.RESET_ALL}"*puzzle_width_chars)
         else:
-            print("-"*37)
-        print(f"{Fore.RED}|{Style.RESET_ALL} ", end = '')
-        print(" | ".join(map(str, row)).replace("0","\u2666"), end = '')
-        print(f" {Fore.RED}|{Style.RESET_ALL}")
-    print(f"{Fore.RED}-{Style.RESET_ALL}"*37)
+            cell_width = 11
+            print(("-"*cell_width).join([emphasized_border] * 4))
+
+        cell_width = 3
+        row_symbols = [str(num) if num > 0 else " " for num in row]
+        cell_groups = [row_symbols[i:i+cell_width]
+                       for i in range(0, len(row_symbols), cell_width)]
+        cell_strings = [" | ".join(map(str, group)) for group in cell_groups]
+        row_string = f" {emphasized_border} ".join(cell_strings)
+
+        print(f"{emphasized_border} {row_string} {emphasized_border}")
+
+    print(f"{Fore.RED}-{Style.RESET_ALL}"*puzzle_width_chars)
 
 
 def main():
