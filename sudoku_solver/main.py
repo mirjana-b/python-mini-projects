@@ -1,6 +1,6 @@
 import os
 from colorama import Fore, Style
-from sudoku_solver import sudoku_solver
+from sudoku_solver import solve_sudoku_puzzle
 
 
 def clean_screen():
@@ -45,8 +45,8 @@ def main():
         [0,0,0,0,6,4,3,0,1],
         [4,0,0,9,3,0,0,0,8]
     ]
-    sudoku_solver(sudoku_puzzle)
-    print_sudoku_puzzle(sudoku_puzzle)
+    solve_sudoku_puzzle(sudoku_puzzle)
+    # print_sudoku_puzzle(sudoku_puzzle)
 
 
 if __name__ == "__main__":
