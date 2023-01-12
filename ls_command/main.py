@@ -10,14 +10,22 @@ args = parser.parse_args()
 dir_path_abs = args.dir.resolve().absolute()
 show_all = args.all
 
-def listing_all_files(directory, show_hidden_files):
+def list_visible_files(directory):
     for f in directory.iterdir():
-        if show_hidden_files:
-            print(f.name)
-        else:
-            if f.name[0]!='.':
-                print (f.name)
+        if f.name[0]!='.':
+            print (f.name)
+
+def list_hidden_files(directory):
+    for f in directory.iterdir():
+        print(f.name)
+
+def main():
+    if show_all:
+        list_hidden_files(dir_path_abs)
+    else:
+        list_visible_files(dir_path_abs)
 
 
 if __name__ == '__main__':
-    listing_all_files(dir_path_abs, show_all)
+    main()
+
