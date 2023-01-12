@@ -9,6 +9,13 @@ parser.add_argument('dir', nargs='?', default=os.getcwd(), type=Path, help="Dire
 arg = parser.parse_args()
 dir_path_abs = arg.dir.resolve().absolute()
 
-print (f"This is the absolute path to current working directory {dir_path_abs}")
+# print (f"This is the absolute path to current working directory {dir_path_abs}")
 
-"Implemente a proof of concept"
+def listing_all_files(dir):
+    for f in dir.iterdir():
+        print(f.name)
+
+
+if __name__ == '__main__':
+    listing_all_files(dir_path_abs)
+
