@@ -6,6 +6,10 @@ from button import Button
 class Game():
     def __init__(self):
         pygame.init()  # pylint: disable=no-member
+        pygame.mixer.init()
+
+        self.background_sound = pygame.mixer.music.load("./sounds/space.mp3")
+        pygame.mixer.music.play(-1)
 
         self.screen = pygame.display.set_mode(
             (0, 0), pygame.FULLSCREEN)  # pylint: disable=no-member
