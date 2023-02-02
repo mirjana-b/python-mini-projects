@@ -1,29 +1,48 @@
-import time
 import os
 import pygame
 from button import Button
 
+
 class Game():
     def __init__(self):
-        pygame.init()# pylint: disable=no-member
-        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)# pylint: disable=no-member
-        self.background = pygame.image.load(os.path.join("./pictures", "space.png"))
+        pygame.init()  # pylint: disable=no-member
+
+        self.screen = pygame.display.set_mode(
+            (0, 0), pygame.FULLSCREEN)  # pylint: disable=no-member
+        self.background = pygame.image.load(
+            os.path.join("./pictures", "space.png"))
+
         self.running = True
-        self.w, self.h = pygame.display.get_surface().get_size()
-        self.play_button_img = pygame.image.load(os.path.join("./pictures", "play_button.png"))
-        self.exit_button_img = pygame.image.load(os.path.join("./pictures", "exit_button.png"))
-        self.play_button = Button(self.w/2 - 275 - 10, self.h/2 - 70, self.play_button_img)
-        self.exit_button = Button(self.w/2 + 10, self.h/2 - 70, self.exit_button_img)
+        width, height = pygame.display.get_surface().get_size()
+
+        play_button_img = pygame.image.load(
+            os.path.join("./pictures", "play_button.png"))
+        exit_button_img = pygame.image.load(
+            os.path.join("./pictures", "exit_button.png"))
+
+        # Both buttons have the same size
+        button_width = play_button_img.get_width()
+        button_height = play_button_img.get_height()
+        button_spacing = 20
+
+        self.play_button = Button(
+            x=width/2 - button_width - button_spacing/2,
+            y=height/2 - button_height/2,
+            image=play_button_img)
+        self.exit_button = Button(
+            x=width/2 + button_spacing/2,
+            y=height/2 - button_height/2,
+            image=exit_button_img)
 
     def game_loop(self):
         while self.running:
-            self.get_events()
+            self.handle_events()
             self.update()
             self.render()
 
-    def get_events(self):
+    def handle_events(self):
         for event in pygame.event.get():
-            if event.type == pygame.QUIT: # pylint: disable=no-member
+            if event.type == pygame.QUIT:  # pylint: disable=no-member
                 self.running = False
 
     def update(self):
