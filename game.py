@@ -48,6 +48,11 @@ class Game():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:  # pylint: disable=no-member
                 self.running = False
+            if event.type == pygame.MOUSEBUTTONDOWN:# pylint: disable=no-member
+                pos = pygame.mouse.get_pos()
+                if self.exit_button.rect.collidepoint(pos):
+                    self.running = False
+
 
     def update(self):
         pass
