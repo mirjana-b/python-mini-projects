@@ -18,6 +18,7 @@ class Game():
             os.path.join("./pictures", "space.png"))
 
         self.running = True
+        self.playing = False
         width, height = pygame.display.get_surface().get_size()
 
         play_button_img = pygame.image.load(
@@ -106,8 +107,12 @@ class Game():
                 self.running = False
             if event.type == pygame.MOUSEBUTTONDOWN:# pylint: disable=no-member
                 pos = pygame.mouse.get_pos()
-                if self.exit_button.rect.collidepoint(pos):
+                if self.exit_button.rect.collidepoint(pos) and self.playing == False:
                     self.running = False
+            if event.type == pygame.MOUSEBUTTONDOWN:# pylint: disable=no-member
+                pos = pygame.mouse.get_pos()
+                if self.play_button.rect.collidepoint(pos):
+                    self.playing = True
 
 
     def update(self):
@@ -115,8 +120,13 @@ class Game():
 
     def render(self):
         self.screen.blit(self.background, (0, 0))
-        self.play_button.draw(self.screen)
-        self.exit_button.draw(self.screen)
+
+        if self.playing:
+            self.andoria_planet.draw(self.screen)
+        else:
+            self.play_button.draw(self.screen)
+            self.exit_button.draw(self.screen)
+
         pygame.display.flip()
 
 
