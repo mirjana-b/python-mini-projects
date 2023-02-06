@@ -1,6 +1,7 @@
 import os
 import pygame
 from button import Button
+from planet import Planet
 
 
 class Game():
@@ -37,6 +38,61 @@ class Game():
             x=width/2 + button_spacing/2,
             y=height/2 - button_height/2,
             image=exit_button_img)
+
+        self.initialize_planets()
+
+    def initialize_planets(self):
+        width, height = pygame.display.get_surface().get_size()
+
+        andoria_planet_img = pygame.image.load(
+            os.path.join("./pictures", "andoria.png"))
+        ardana_planet_img = pygame.image.load(
+            os.path.join("./pictures", "ardana.png"))
+        elball_planet_img = pygame.image.load(
+            os.path.join("./pictures", "elball.png"))
+        nibiru_planet_img = pygame.image.load(
+            os.path.join("./pictures", "nibiru.png"))
+        omegaIV_planet_img = pygame.image.load(
+            os.path.join("./pictures", "risa.png"))
+        risa_planet_img = pygame.image.load(
+            os.path.join("./pictures", "risa.png"))
+        vulcan_planet_img = pygame.image.load(
+            os.path.join("./pictures", "vulcan.png"))
+        wolf359_planet_img = pygame.image.load(
+            os.path.join("./pictures", "wolf359.png"))
+
+        self.andoria_planet = Planet(
+            x=width/2,
+            y=height/2,
+            image=andoria_planet_img)
+        self.ardana_planet = Planet(
+            x=width/2,
+            y=height/2,
+            image=ardana_planet_img)
+        self.elball_planet = Planet(
+            x=width/2,
+            y=height/2,
+            image=elball_planet_img)
+        self.nibiru_planet = Planet(
+            x=width/2,
+            y=height/2,
+            image=nibiru_planet_img)
+        self.omegaIV_planet = Planet(
+            x=width/2,
+            y=height/2,
+            image=omegaIV_planet_img)
+        self.risa_planet = Planet(
+            x=width/2,
+            y=height/2,
+            image=risa_planet_img)
+        self.vulcan_planet = Planet(
+            x=width/2,
+            y=height/2,
+            image=vulcan_planet_img)
+        self.wolf359_planet = Planet(
+            x=width/2,
+            y=height/2,
+            image=wolf359_planet_img)
 
     def game_loop(self):
         while self.running:
