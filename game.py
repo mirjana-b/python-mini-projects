@@ -13,7 +13,7 @@ class Game():
         pygame.mixer.music.play(-1)
 
         self.screen = pygame.display.set_mode(
-            (0, 0), pygame.FULLSCREEN)  # pylint: disable=no-member
+            (1366, 768), pygame.FULLSCREEN)  # pylint: disable=no-member
         self.background = pygame.image.load(
             os.path.join("./pictures", "space.png"))
 
