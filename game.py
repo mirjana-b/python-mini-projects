@@ -52,7 +52,7 @@ class Game():
         nibiru_pos_x = 160
         nibiru_pos_y = 90
         omegaIV_pos_x = 487
-        omegaIV_pos_y = 640
+        omegaIV_pos_y = 590
         risa_pos_x = 1200
         risa_pos_y = 500
         vulcan_pos_x = 750
