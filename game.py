@@ -25,11 +25,15 @@ class Game():
             os.path.join("./pictures", "play_button.png"))
         exit_button_img = pygame.image.load(
             os.path.join("./pictures", "exit_button.png"))
+        menu_button_img = pygame.image.load(
+            os.path.join("./pictures", "menu_button.png"))
 
-        # Both buttons have the same size
+        # Both(play and exit) buttons have the same size
         button_width = play_button_img.get_width()
         button_height = play_button_img.get_height()
         button_spacing = 20
+        menu_pos_x = 36
+        menu_pos_y = 20
 
         self.play_button = Button(
             x=width/2 - button_width - button_spacing/2,
@@ -39,6 +43,10 @@ class Game():
             x=width/2 + button_spacing/2,
             y=height/2 - button_height/2,
             image=exit_button_img)
+        self.menu_button = Button(
+            x=menu_pos_x,
+            y=menu_pos_y,
+            image=menu_button_img)
 
         self.initialize_planets()
 
@@ -120,15 +128,18 @@ class Game():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:  # pylint: disable=no-member
                 self.running = False
-            if event.type == pygame.MOUSEBUTTONDOWN:# pylint: disable=no-member
+            if event.type == pygame.MOUSEBUTTONDOWN:  # pylint: disable=no-member
                 pos = pygame.mouse.get_pos()
                 if self.exit_button.rect.collidepoint(pos) and self.playing == False:
                     self.running = False
-            if event.type == pygame.MOUSEBUTTONDOWN:# pylint: disable=no-member
+            if event.type == pygame.MOUSEBUTTONDOWN:  # pylint: disable=no-member
                 pos = pygame.mouse.get_pos()
                 if self.play_button.rect.collidepoint(pos):
                     self.playing = True
-
+            if event.type == pygame.MOUSEBUTTONDOWN:  # pylint: disable=no-member
+                pos = pygame.mouse.get_pos()
+                if self.menu_button.rect.collidepoint(pos):
+                    self.playing = False
 
     def update(self):
         pass
@@ -145,6 +156,7 @@ class Game():
             self.risa_planet.draw(self.screen)
             self.vulcan_planet.draw(self.screen)
             self.wolf359_planet.draw(self.screen)
+            self.menu_button.draw(self.screen)
         else:
             self.play_button.draw(self.screen)
             self.exit_button.draw(self.screen)
