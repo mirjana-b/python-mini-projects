@@ -19,6 +19,11 @@ class Game():
 
         self.running = True
         self.playing = False
+
+        self.initialize_buttons()
+        self.initialize_planets()
+
+    def initialize_buttons(self):
         width, height = pygame.display.get_surface().get_size()
 
         play_button_img = pygame.image.load(
@@ -47,8 +52,6 @@ class Game():
             x=menu_pos_x,
             y=menu_pos_y,
             image=menu_button_img)
-
-        self.initialize_planets()
 
     def initialize_planets(self):
         andoria_pos_x = 680
