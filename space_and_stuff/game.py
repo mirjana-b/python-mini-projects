@@ -1,7 +1,7 @@
 import os
 import sys
 import pygame
-from game_screens import MainMenu
+from screens.main_menu import MainMenu
 
 
 class Game():
