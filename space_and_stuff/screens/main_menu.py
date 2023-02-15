@@ -29,25 +29,27 @@ class MainMenu:
         self.play_button = Button(
             x=width/2 - button_width - button_spacing/2,
             y=height/2 - button_height/2,
-            image=play_button_img)
+            image=play_button_img,
+            on_click=self.on_play_clicked)
         self.exit_button = Button(
             x=width/2 + button_spacing/2,
             y=height/2 - button_height/2,
-            image=exit_button_img)
+            image=exit_button_img,
+            on_click=self.on_exit_clicked)
+
+    def on_exit_clicked(self):
+        pygame.quit()  # pylint: disable=no-member
+        sys.exit()
+
+    def on_play_clicked(self):
+        self.game.set_screen(game_screen.GameScreen(self.game, self.screen, self.background))
 
     def update(self):
         pass
 
     def handle_events(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN:  # pylint: disable=no-member
-            pos = pygame.mouse.get_pos()
-            if self.exit_button.rect.collidepoint(pos):
-                pygame.quit()  # pylint: disable=no-member
-                sys.exit()
-        if event.type == pygame.MOUSEBUTTONDOWN:  # pylint: disable=no-member
-            pos = pygame.mouse.get_pos()
-            if self.play_button.rect.collidepoint(pos):
-                self.game.set_screen(game_screen.GameScreen(self.game, self.screen, self.background))
+        self.exit_button.handle_event(event)
+        self.play_button.handle_event(event)
 
     def render(self):
         self.screen.blit(self.background, (0, 0))

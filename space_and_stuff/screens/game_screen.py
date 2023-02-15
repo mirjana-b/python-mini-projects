@@ -24,7 +24,8 @@ class GameScreen:
         self.menu_button = Button(
             x=menu_pos_x,
             y=menu_pos_y,
-            image=menu_button_img)
+            image=menu_button_img,
+            on_click=self.on_menu_clicked)
 
     def initialize_planet(self, x, y, image_name, name):
         image = pygame.image.load(os.path.join("./pictures", image_name))
@@ -46,11 +47,11 @@ class GameScreen:
     def update(self):
         pass
 
+    def on_menu_clicked(self):
+        self.game.set_screen(main_menu.MainMenu(self.game, self.screen, self.background))
+
     def handle_events(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN:  # pylint: disable=no-member
-            pos = pygame.mouse.get_pos()
-            if self.menu_button.rect.collidepoint(pos):
-                self.game.set_screen(main_menu.MainMenu(self.game, self.screen, self.background))
+        self.menu_button.handle_event(event)
 
     def render(self):
         self.screen.blit(self.background, (0, 0))
