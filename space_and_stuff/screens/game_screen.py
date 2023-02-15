@@ -26,81 +26,22 @@ class GameScreen:
             y=menu_pos_y,
             image=menu_button_img)
 
+    def initialize_planet(self, x, y, image_name, name):
+        image = pygame.image.load(os.path.join("./pictures", image_name))
+        planet = Planet(x, y, image, name)
+        self.planets.append(planet)
+
     def initialize_planets(self):
-        andoria_pos_x = 680
-        andoria_pos_y = 380
-        ardana_pos_x = 466
-        ardana_pos_y = 199
-        elball_pos_x = 1031
-        elball_pos_y = 180
-        nibiru_pos_x = 160
-        nibiru_pos_y = 90
-        omegaIV_pos_x = 487
-        omegaIV_pos_y = 590
-        risa_pos_x = 1200
-        risa_pos_y = 500
-        vulcan_pos_x = 750
-        vulcan_pos_y = 50
-        wolf359_pos_x = 145
-        wolf359_pos_y = 510
+        self.planets = []
 
-        andoria_planet_img = pygame.image.load(
-            os.path.join("./pictures", "andoria.png"))
-        ardana_planet_img = pygame.image.load(
-            os.path.join("./pictures", "ardana.png"))
-        elball_planet_img = pygame.image.load(
-            os.path.join("./pictures", "elball.png"))
-        nibiru_planet_img = pygame.image.load(
-            os.path.join("./pictures", "nibiru.png"))
-        omegaIV_planet_img = pygame.image.load(
-            os.path.join("./pictures", "omegaIV.png"))
-        risa_planet_img = pygame.image.load(
-            os.path.join("./pictures", "risa.png"))
-        vulcan_planet_img = pygame.image.load(
-            os.path.join("./pictures", "vulcan.png"))
-        wolf359_planet_img = pygame.image.load(
-            os.path.join("./pictures", "wolf359.png"))
-
-        self.andoria_planet = Planet(
-            x=andoria_pos_x,
-            y=andoria_pos_y,
-            image=andoria_planet_img,
-            name="Andoria")
-        self.ardana_planet = Planet(
-            x=ardana_pos_x,
-            y=ardana_pos_y,
-            image=ardana_planet_img,
-            name="Ardana")
-        self.elball_planet = Planet(
-            x=elball_pos_x,
-            y=elball_pos_y,
-            image=elball_planet_img,
-            name="Elball")
-        self.nibiru_planet = Planet(
-            x=nibiru_pos_x,
-            y=nibiru_pos_y,
-            image=nibiru_planet_img,
-            name="Nibiru")
-        self.omegaIV_planet = Planet(
-            x=omegaIV_pos_x,
-            y=omegaIV_pos_y,
-            image=omegaIV_planet_img,
-            name="OmegaIV")
-        self.risa_planet = Planet(
-            x=risa_pos_x,
-            y=risa_pos_y,
-            image=risa_planet_img,
-            name="Risa")
-        self.vulcan_planet = Planet(
-            x=vulcan_pos_x,
-            y=vulcan_pos_y,
-            image=vulcan_planet_img,
-            name="Vulcan")
-        self.wolf359_planet = Planet(
-            x=wolf359_pos_x,
-            y=wolf359_pos_y,
-            image=wolf359_planet_img,
-            name="Wolf359")
+        self.initialize_planet(x=680, y=380, image_name="andoria.png", name="Andoria")
+        self.initialize_planet(x=466, y=199, image_name="ardana.png", name="Ardana")
+        self.initialize_planet(x=1031, y=180, image_name="elball.png", name="Elball")
+        self.initialize_planet(x=160, y=90, image_name="nibiru.png", name="Nibiru")
+        self.initialize_planet(x=487, y=590, image_name="omegaIV.png", name="OmegaIV")
+        self.initialize_planet(x=1200, y=500, image_name="risa.png", name="Risa")
+        self.initialize_planet(x=750, y=50, image_name="vulcan.png", name="Vulcan")
+        self.initialize_planet(x=145, y=510, image_name="wolf359.png", name="Wolf359")
 
     def update(self):
         pass
@@ -113,14 +54,10 @@ class GameScreen:
 
     def render(self):
         self.screen.blit(self.background, (0, 0))
-        self.andoria_planet.draw(self.screen)
-        self.ardana_planet.draw(self.screen)
-        self.elball_planet.draw(self.screen)
-        self.nibiru_planet.draw(self.screen)
-        self.omegaIV_planet.draw(self.screen)
-        self.risa_planet.draw(self.screen)
-        self.vulcan_planet.draw(self.screen)
-        self.wolf359_planet.draw(self.screen)
+
+        for planet in self.planets:
+            planet.draw(self.screen)
+
         self.menu_button.draw(self.screen)
 
         pygame.display.flip()
