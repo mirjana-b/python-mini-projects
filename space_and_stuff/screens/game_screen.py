@@ -2,7 +2,7 @@ import os
 import pygame
 
 #TODO solve why pylint shows import-error(import works)
-from screens import main_menu # pylint: disable=import-error
+from screens import main_menu, andoria_game # pylint: disable=import-error
 from planet import Planet # pylint: disable=import-error
 from button import Button # pylint: disable=import-error
 
@@ -62,7 +62,8 @@ class GameScreen:
             self.game, self.screen, self.background))
 
     def on_andoria_clicked(self):
-        pass
+        self.game.set_screen(andoria_game.MemoryGame(
+            self.game, self.screen))
 
     def on_ardana_clicked(self):
         pass
