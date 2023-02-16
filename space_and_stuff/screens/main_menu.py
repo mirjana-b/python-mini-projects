@@ -2,8 +2,9 @@ import os
 import sys
 import pygame
 
-from screens import game_screen
-from button import Button
+#TODO solve why pylint shows import-error(import works)
+from screens import game_screen # pylint: disable=import-error
+from button import Button # pylint: disable=import-error
 
 class MainMenu:
     def __init__(self,  game, screen, background):
