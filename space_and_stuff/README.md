@@ -10,6 +10,9 @@ Images for play, menu and exit buttons by [Hannemann](https://opengameart.org/us
 
 Background image for Andoria planet by Ciera Elizabeth Hoover [SugarMoonWitch](http://sugarmoonwitch.com/) via [OpenGameArt](https://opengameart.org/content/underwater-bg)
 
+Images for Memory game via [Game-icons.net](https://game-icons.net/tags/sea.html)
+
 Game music by [Osmic](https://opengameart.org/users/osmic) via [OpenGameArt](https://opengameart.org/content/space-ambient)
 
 Andoria planet music by [Kim Lightyear](https://opengameart.org/users/kly) via [OpenGameArt](https://opengameart.org/content/under-the-sea)
+
