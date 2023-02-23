@@ -18,7 +18,7 @@ class GameScreen:
 
     def initialize_menu_button(self):
         menu_button_img = pygame.image.load(
-            os.path.join("./pictures", "menu_button.png"))
+            os.path.join("./pictures", "menu.png"))
 
         menu_pos_x = 36
         menu_pos_y = 20

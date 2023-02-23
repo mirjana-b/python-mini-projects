@@ -18,9 +18,9 @@ class MainMenu:
         width, height = pygame.display.get_surface().get_size()
 
         play_button_img = pygame.image.load(
-            os.path.join("./pictures", "play_button.png"))
+            os.path.join("./pictures", "play.png"))
         exit_button_img = pygame.image.load(
-            os.path.join("./pictures", "exit_button.png"))
+            os.path.join("./pictures", "exit.png"))
 
         # Both(play and exit) buttons have the same size
         button_width = play_button_img.get_width()
