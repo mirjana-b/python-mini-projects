@@ -3,6 +3,8 @@ import pygame
 import random
 
 from memory_card import Card  # pylint: disable=import-error
+from screens import game_screen # pylint: disable=import-error
+from button import Button # pylint: disable=import-error
 
 
 class MemoryGame:
@@ -17,6 +19,7 @@ class MemoryGame:
         pygame.mixer.music.play(-1)
         self.calculate_cards_position()
         self.initialize_memory_cards()
+        self.initialize_back_button()
 
     def calculate_cards_position(self):
         self.cards_position = []
@@ -62,6 +65,25 @@ class MemoryGame:
             self.initialize_memory_card(x=x_pos, y=y_pos, image_bg_name="at_sea.png",
                                            name_bg="At sea", image_card=card_images[i], name_card=card_names[i], on_click=self.on_card_clicked)
 
+    def initialize_back_button(self):
+        back_button_img = pygame.image.load(
+            os.path.join("pictures", "back.png"))
+
+        back_pos_x = 36
+        back_pos_y = 20
+
+        self.back_button = Button(
+            x=back_pos_x,
+            y=back_pos_y,
+            image=back_button_img,
+            on_click=self.on_back_clicked)
+        
+    def on_back_clicked(self):
+        self.game.set_screen(game_screen.GameScreen(
+            self.game, self.screen, self.background))
+
+
+
     # TODO Consider using a function like this instead
     # of having a callback for each card
 
@@ -76,6 +98,7 @@ class MemoryGame:
 
     def render(self):
         self.screen.blit(self.background, (0, 0))
+        self.back_button.draw(self.screen)
 
         for card in self.cards:
             card.draw(self.screen)
@@ -83,4 +106,4 @@ class MemoryGame:
         pygame.display.flip()
 
     def handle_events(self, event):
-        pass
+        self.back_button.handle_event(event)
