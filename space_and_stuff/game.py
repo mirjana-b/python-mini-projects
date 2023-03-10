@@ -17,7 +17,7 @@ class Game():
         self.background = pygame.image.load(
             os.path.join("./pictures", "space.png"))
 
-        self.screen = MainMenu(self, self.screen, self.background)
+        self.screen = MainMenu(self, self.screen)
 
     def set_screen(self, screen):
         self.screen = screen

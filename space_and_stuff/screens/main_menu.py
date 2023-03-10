@@ -2,15 +2,19 @@ import os
 import sys
 import pygame
 
-#TODO solve why pylint shows import-error(import works)
-from screens import game_screen # pylint: disable=import-error
-from button import Button # pylint: disable=import-error
+# TODO solve why pylint shows import-error(import works)
+from screens import game_screen  # pylint: disable=import-error
+from button import Button  # pylint: disable=import-error
+
 
 class MainMenu:
-    def __init__(self,  game, screen, background):
+    def __init__(self,  game, screen):
+        self.background_sound = pygame.mixer.music.load("./sounds/space.mp3")
+        pygame.mixer.music.play(-1)
+        self.background = pygame.image.load(
+            os.path.join("./pictures", "space.png"))
         self.game = game
         self.screen = screen
-        self.background = background
 
         self.initialize_buttons()
 
@@ -43,7 +47,7 @@ class MainMenu:
         sys.exit()
 
     def on_play_clicked(self):
-        self.game.set_screen(game_screen.GameScreen(self.game, self.screen, self.background))
+        self.game.set_screen(game_screen.GameScreen(self.game, self.screen))
 
     def update(self):
         pass

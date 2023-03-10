@@ -1,17 +1,20 @@
 import os
 import pygame
 
-#TODO solve why pylint shows import-error(import works)
-from screens import main_menu, andoria_game # pylint: disable=import-error
-from planet import Planet # pylint: disable=import-error
-from button import Button # pylint: disable=import-error
+# TODO solve why pylint shows import-error(import works)
+from screens import main_menu, andoria_game  # pylint: disable=import-error
+from planet import Planet  # pylint: disable=import-error
+from button import Button  # pylint: disable=import-error
 
 
 class GameScreen:
-    def __init__(self,  game, screen, background):
+    def __init__(self,  game, screen):
+        self.background_sound = pygame.mixer.music.load("./sounds/space.mp3")
+        pygame.mixer.music.play(-1)
+        self.background = pygame.image.load(
+            os.path.join("./pictures", "space.png"))
         self.game = game
         self.screen = screen
-        self.background = background
 
         self.initialize_menu_button()
         self.initialize_planets()
@@ -59,7 +62,7 @@ class GameScreen:
 
     def on_menu_clicked(self):
         self.game.set_screen(main_menu.MainMenu(
-            self.game, self.screen, self.background))
+            self.game, self.screen))
 
     def on_andoria_clicked(self):
         self.game.set_screen(andoria_game.MemoryGame(

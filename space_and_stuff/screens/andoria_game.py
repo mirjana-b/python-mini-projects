@@ -3,8 +3,8 @@ import pygame
 import random
 
 from memory_card import Card  # pylint: disable=import-error
-from screens import game_screen # pylint: disable=import-error
-from button import Button # pylint: disable=import-error
+from screens import game_screen  # pylint: disable=import-error
+from button import Button  # pylint: disable=import-error
 
 
 class MemoryGame:
@@ -63,7 +63,7 @@ class MemoryGame:
         for i, pos in enumerate(self.cards_position):
             x_pos, y_pos = pos
             self.initialize_memory_card(x=x_pos, y=y_pos, image_bg_name="at_sea.png",
-                                           name_bg="At sea", image_card=card_images[i], name_card=card_names[i], on_click=self.on_card_clicked)
+                                        name_bg="At sea", image_card=card_images[i], name_card=card_names[i], on_click=self.on_card_clicked)
 
     def initialize_back_button(self):
         back_button_img = pygame.image.load(
@@ -77,12 +77,10 @@ class MemoryGame:
             y=back_pos_y,
             image=back_button_img,
             on_click=self.on_back_clicked)
-        
+
     def on_back_clicked(self):
         self.game.set_screen(game_screen.GameScreen(
-            self.game, self.screen, self.background))
-
-
+            self.game, self.screen))
 
     # TODO Consider using a function like this instead
     # of having a callback for each card
